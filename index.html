@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инвалидность в разных культурах: от мифов к инклюзии</title>
+    <!-- Подключение Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Подключение шрифта Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        sand: {
+                            50: '#FAF8F5',
+                            100: '#F3EFEA',
+                            200: '#E5DFD5',
+                            300: '#D2C8B8',
+                        },
+                        slate: {
+                            850: '#1A2433',
+                            900: '#111827',
+                        },
+                        terracotta: {
+                            500: '#C85A32',
+                            600: '#B04A25',
+                            100: '#F9EAE4',
+                        },
+                        teal: {
+                            600: '#1D6F72',
+                            700: '#16585A',
+                            100: '#E3F1F1',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-sand-50 text-slate-900 font-sans antialiased selection:bg-terracotta-100 selection:text-terracotta-600 min-h-screen flex flex-col">
+
+    <!-- Уведомление (Toast) для копирования ссылки -->
+    <div id="toast" role="status" aria-live="polite" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 transform transition-all duration-300 translate-y-20 opacity-0 pointer-events-none">
+        <div class="bg-slate-850 text-white px-5 py-3 rounded-full shadow-xl flex items-center gap-2.5 text-sm font-medium border border-slate-700">
+            <svg class="w-4 h-4 text-teal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span id="toast-message">Ссылка скопирована в буфер обмена</span>
+        </div>
+    </div>
+
+    <!-- Шапка карточки -->
+    <header class="bg-slate-850 text-sand-50 pt-8 pb-10 px-4 sm:px-6 rounded-b-3xl shadow-md">
+        <div class="max-w-2xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-sand-200 text-xs font-medium tracking-wide uppercase mb-4">
+                <span class="w-2 h-2 rounded-full bg-terracotta-500"></span>
+                Материалы к студенческому докладу
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white mb-3">
+                Инвалидность в разных культурах: от мифов к инклюзии
+            </h1>
+            <p class="text-sand-200 text-sm sm:text-base leading-relaxed">
+                Интерактивный путеводитель о том, как разные общества объясняют особенности здоровья, выстраивают городскую среду и формируют язык уважения.
+            </p>
+        </div>
+    </header>
+
+    <!-- Навигационные вкладки (Mobile-first горизонтальный скролл / сетка) -->
+    <nav aria-label="Разделы карточки" class="sticky top-0 z-30 bg-sand-50/95 backdrop-blur-md border-b border-sand-200 px-4 py-3">
+        <div class="max-w-2xl mx-auto">
+            <div role="tablist" class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <button role="tab" id="tab-models" aria-selected="true" aria-controls="panel-models" onclick="switchTab('models')"
+                    class="tab-btn active-tab text-left sm:text-center px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-slate-850 text-white shadow-sm">
+                    1. Модели взглядов
+                </button>
+                <button role="tab" id="tab-regions" aria-selected="false" aria-controls="panel-regions" onclick="switchTab('regions')"
+                    class="tab-btn text-left sm:text-center px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-sand-100 text-slate-700 hover:bg-sand-200">
+                    2. Сравнение регионов
+                </button>
+                <button role="tab" id="tab-quiz" aria-selected="false" aria-controls="panel-quiz" onclick="switchTab('quiz')"
+                    class="tab-btn text-left sm:text-center px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-sand-100 text-slate-700 hover:bg-sand-200">
+                    3. Мини-тест
+                </button>
+                <button role="tab" id="tab-ethics" aria-selected="false" aria-controls="panel-ethics" onclick="switchTab('ethics')"
+                    class="tab-btn text-left sm:text-center px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-sand-100 text-slate-700 hover:bg-sand-200">
+                    4. Шпаргалка этики
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="flex-grow max-w-2xl w-full mx-auto px-4 py-6 sm:py-8">
+
+        <!-- ВКЛАДКА 1: МОДЕЛИ ВОСПРИЯТИЯ -->
+        <section id="panel-models" role="tabpanel" aria-labelledby="tab-models" class="space-y-4">
+            <div class="mb-4">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Четыре модели восприятия</h2>
+                <p class="text-sm text-slate-600 mt-1">Нажмите на любую карточку, чтобы раскрыть культурный контекст и отношение к человеку.</p>
+            </div>
+
+            <div id="models-container" class="space-y-3">
+                <!-- Карточки генерируются через JS для чистоты и доступности -->
+            </div>
+        </section>
+
+        <!-- ВКЛАДКА 2: СРАВНЕНИЕ РЕГИОНОВ -->
+        <section id="panel-regions" role="tabpanel" aria-labelledby="tab-regions" class="hidden space-y-5">
+            <div>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Культурная география инклюзии</h2>
+                <p class="text-sm text-slate-600 mt-1">Выберите регион, чтобы сравнить социальные нормы, роль семьи и устройство среды.</p>
+            </div>
+
+            <!-- Селектор регионов -->
+            <div class="grid grid-cols-2 gap-2" role="group" aria-label="Выбор региона">
+                <button onclick="selectRegion('scandinavia')" id="reg-btn-scandinavia"
+                    class="region-btn p-3 rounded-2xl border-2 border-teal-600 bg-teal-100/60 text-slate-900 text-left transition-all">
+                    <span class="block text-xs font-bold uppercase tracking-wider text-teal-700">Северная Европа</span>
+                    <span class="block text-sm sm:text-base font-bold mt-0.5">Скандинавия</span>
+                </button>
+                <button onclick="selectRegion('japan')" id="reg-btn-japan"
+                    class="region-btn p-3 rounded-2xl border-2 border-sand-200 bg-white text-slate-700 hover:border-sand-300 text-left transition-all">
+                    <span class="block text-xs font-bold uppercase tracking-wider text-slate-500">Восточная Азия</span>
+                    <span class="block text-sm sm:text-base font-bold mt-0.5">Япония</span>
+                </button>
+                <button onclick="selectRegion('globalsouth')" id="reg-btn-globalsouth"
+                    class="region-btn p-3 rounded-2xl border-2 border-sand-200 bg-white text-slate-700 hover:border-sand-300 text-left transition-all">
+                    <span class="block text-xs font-bold uppercase tracking-wider text-slate-500">Традиционные общины</span>
+                    <span class="block text-sm sm:text-base font-bold mt-0.5">Глобальный Юг</span>
+                </button>
+                <button onclick="selectRegion('west')" id="reg-btn-west"
+                    class="region-btn p-3 rounded-2xl border-2 border-sand-200 bg-white text-slate-700 hover:border-sand-300 text-left transition-all">
+                    <span class="block text-xs font-bold uppercase tracking-wider text-slate-500">Правозащитный фокус</span>
+                    <span class="block text-sm sm:text-base font-bold mt-0.5">США и ЕС</span>
+                </button>
+            </div>
+
+            <!-- Контент выбранного региона -->
+            <div id="region-detail-card" class="bg-white border border-sand-200 rounded-3xl p-5 sm:p-6 shadow-sm space-y-4 transition-all">
+                <!-- Заполняется динамически -->
+            </div>
+        </section>
+
+        <!-- ВКЛАДКА 3: МИНИ-ТЕСТ -->
+        <section id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" class="hidden space-y-5">
+            <div>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Мини-тест: Среда или человек?</h2>
+                <p class="text-sm text-slate-600 mt-1">Определите, какая модель мышления проявляется в трёх реальных ситуациях.</p>
+            </div>
+
+            <div id="quiz-container" class="space-y-4">
+                <!-- Вопросы генерируются динамически -->
+            </div>
+
+            <div id="quiz-summary" class="hidden bg-teal-100 border border-teal-600/30 rounded-2xl p-5 text-slate-900">
+                <h3 class="font-bold text-base sm:text-lg text-teal-700 mb-1">Разбор завершён!</h3>
+                <p id="quiz-score-text" class="text-sm leading-relaxed"></p>
+                <button onclick="resetQuiz()" class="mt-3 px-4 py-2 bg-teal-700 text-white text-xs sm:text-sm font-semibold rounded-xl hover:bg-teal-600 transition">
+                    Пройти ещё раз
+                </button>
+            </div>
+        </section>
+
+        <!-- ВКЛАДКА 4: ШПАРГАЛКА ЭТИКИ -->
+        <section id="panel-ethics" role="tabpanel" aria-labelledby="tab-ethics" class="hidden space-y-5">
+            <div>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Язык уважения: шпаргалка</h2>
+                <p class="text-sm text-slate-600 mt-1">Нажмите на карточку с устаревшей фразой, чтобы увидеть корректную современную альтернативу (принцип <em>person-first</em>).</p>
+            </div>
+
+            <div id="ethics-container" class="space-y-3">
+                <!-- Карточки этики генерируются динамически -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Подвал карточки -->
+    <footer class="bg-sand-100 border-t border-sand-200 py-8 px-4 sm:px-6 mt-8">
+        <div class="max-w-2xl mx-auto space-y-5">
+            <blockquote class="border-l-4 border-terracotta-500 pl-4 py-1">
+                <p class="text-sm sm:text-base font-medium text-slate-800 italic">
+                    «Инвалидность возникает не из-за особенностей тела или психики человека, а на стыке этих особенностей с барьерами, которые создаёт само общество».
+                </p>
+                <footer class="text-xs text-slate-500 mt-1.5 font-medium">
+                    — Ключевой принцип Конвенции ООН о правах инвалидов
+                </footer>
+            </blockquote>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+                <span class="text-xs text-slate-500">Сохраните карточку для подготовки к семинарам</span>
+                <button onclick="copyPageLink()" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 active:scale-[0.99] text-white font-semibold text-sm shadow-sm transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                    </svg>
+                    Поделиться / Скопировать ссылку
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- ДАННЫЕ ДЛЯ ВКЛАДКИ 1: МОДЕЛИ ВОСПРИЯТИЯ ---
+        const modelsData = [
+            {
+                id: 'moral',
+                badge: 'Архаичный и религиозный взгляд',
+                title: 'Морально-религиозная модель',
+                summary: 'Инвалидность трактуется как испытание, карма, наказание или особый сакральный знак.',
+                attitude: 'Отношение колеблется от социальной изоляции и стигмы до благотворительной жалости или почитания человека как «особенного».',
+                context: 'Характерна для традиционных обществ прошлого и сохраняется в отдельных закрытых сообществах. Ответственность возлагается на судьбу или семью, а не на государство.'
+            },
+            {
+                id: 'medical',
+                badge: 'XIX – середина XX века',
+                title: 'Медицинская модель',
+                summary: 'Инвалидность рассматривается исключительно как «поломка» организма, требующая лечения и коррекции.',
+                attitude: 'Человек воспринимается как пациент и объект опеки. Главная цель — максимально приблизить его к условной «норме».',
+                context: 'Сформировалась с развитием клинической медицины. Помогла улучшить реабилитацию, но привела к закрытым интернатам и исключению людей из обычной жизни.'
+            },
+            {
+                id: 'social',
+                badge: 'С 1970-х годов по настоящее время',
+                title: 'Социальная модель',
+                summary: 'Ограничения создаёт не диагноз, а неприспособленная среда: лестницы без пандусов, отсутствие субтитров и стереотипы.',
+                attitude: 'Человек — полноправный гражданин. Менять нужно архитектуру, транспорт, образование и правила коммуникации.',
+                context: 'Возникла благодаря движению за права людей с инвалидностью в Великобритании и США. Стала основой современной доступной среды.'
+            },
+            {
+                id: 'cultural',
+                badge: 'Современный этап',
+                title: 'Культурно-правозащитная модель',
+                summary: 'Инвалидность — естественная часть человеческого разнообразия и полноценная культурная идентичность.',
+                attitude: 'Фокус на самоопределении, защите прав человека, развитии культуры жестовых языков и концепции нейроразнообразия.',
+                context: 'Закреплена в Конвенции ООН о правах инвалидов (2006). Подчёркивает принцип «Ничего о нас без нас» при принятии любых решений.'
+            }
+        ];
+
+        // --- ДАННЫЕ ДЛЯ ВКЛАДКИ 2: СРАВНЕНИЕ РЕГИОНОВ ---
+        const regionsData = {
+            scandinavia: {
+                title: 'Скандинавия и Северная Европа',
+                tag: 'Модель государства всеобщего благосостояния',
+                causes: 'Рассматривается через социальную модель и права человека: особенности здоровья — нормальная часть жизни общества.',
+                family: 'Высокая автономия личности. Государство предоставляет персональных ассистентов, чтобы человек не зависел исключительно от родственников.',
+                environment: 'Один из самых высоких уровней универсального дизайна в мире: низкопольный транспорт, тактильная навигация и доступные школы по умолчанию.',
+                language: 'Максимально нейтральная, правозащитная лексика; акцент на равных возможностях и устранении барьеров.'
+            },
+            japan: {
+                title: 'Япония',
+                tag: 'Технологичность и культура коллективной гармонии',
+                causes: 'Сочетание современной медицины с традиционным стремлением не выделяться и не создавать неудобств окружающим (концепция «мэйваку»).',
+                family: 'Исторически забота ложилась на семью, однако старение населения и Паралимпийские игры в Токио заметно сдвинули фокус в сторону публичной инклюзии.',
+                environment: 'Эталонная транспортная навигация (именно в Японии изобрели тактильную плитку Брайля), голосовые маяки и робототехника для ухода.',
+                language: 'В последние годы активно заменяются старые иероглифы с оттенком «неполноценности» на более нейтральные и уважительные термины.'
+            },
+            globalsouth: {
+                title: 'Традиционные общины и Глобальный Юг',
+                tag: 'Общинная солидарность при дефиците инфраструктуры',
+                causes: 'Нередко переплетаются медицинские представления с религиозными или общинными объяснениями (испытание, судьба, духовный опыт).',
+                family: 'Расширенная семья и соседская община выступают главной опорой, заменяя собой отсутствующие социальные службы.',
+                environment: 'Острая нехватка формальной доступной среды (пандусов, средств реабилитации), особенно в сельской местности, при высокой взаимопомощи людей.',
+                language: 'В крупных городах формируется правозащитный язык НКО, тогда как в традиционной среде преобладают бытовые и религиозные метафоры.'
+            },
+            west: {
+                title: 'США и Европейский Союз',
+                tag: 'Антидискриминационное право и активизм',
+                causes: 'Чёткое разделение медицинского диагноза и социальных барьеров, закреплённое на уровне федеральных законов (например, закон ADA в США).',
+                family: 'Акцент на независимом проживании (Independent Living), инклюзивном образовании и защите от дискриминации при приёме на работу.',
+                environment: 'Жёсткие строительные и цифровые стандарты доступности (WCAG для сайтов, обязательные лифты, субтитры в медиа).',
+                language: 'Развитая культура самоназваний: дискуссии между person-first («человек с инвалидностью») и identity-first («аутичный человек», «глухой» с заглавной буквы как культурная группа).'
+            }
+        };
+
+        // --- ДАННЫЕ ДЛЯ ВКЛАДКИ 3: МИНИ-ТЕСТ ---
+        const quizData = [
+            {
+                scenario: 'Ситуация 1: В университетской библиотеке нет лифта на второй этаж, где находится читальный зал. Администрация говорит студенту на коляске: «К сожалению, с вашим диагнозом обучение здесь невозможно».',
+                options: [
+                    { text: 'Медицинская модель', correct: true },
+                    { text: 'Социальная модель', correct: false }
+                ],
+                explanation: 'Верно! Здесь причину исключения видят в «диагнозе» студента, а не в отсутствии лифта в здании.'
+            },
+            {
+                scenario: 'Ситуация 2: Организаторы студенческой конференции заранее добавляют субтитры ко всем видеороликам и проверяют контрастность слайдов, чтобы материалы были понятны всем слушателям.',
+                options: [
+                    { text: 'Медицинская модель', correct: false },
+                    { text: 'Социальная модель', correct: true }
+                ],
+                explanation: 'Точно! Организаторы устраняют информационные барьеры заранее, делая среду универсальной для всех.'
+            },
+            {
+                scenario: 'Ситуация 3: В городской газете выходит репортаж с заголовком «Герой, прикованный к коляске, смог закончить вуз вопреки страшному недугу».',
+                options: [
+                    { text: 'Стереотипный / медицинский подход', correct: true },
+                    { text: 'Правозащитный подход', correct: false }
+                ],
+                explanation: 'Именно так. Использование драматичных штампов («прикованный», «вопреки недугу») превращает обычное право на образование в «подвиг».'
+            }
+        ];
+
+        // --- ДАННЫЕ ДЛЯ ВКЛАДКИ 4: ШПАРГАЛКА ЭТИКИ ---
+        const ethicsData = [
+            {
+                bad: '«Инвалид», «ограниченные возможности» (о человеке)',
+                good: 'Человек с инвалидностью',
+                why: 'Сначала мы видим личность, а инвалидность — лишь одна из характеристик. Ограниченными бывают возможности среды, а не человека.'
+            },
+            {
+                bad: '«Прикованный к инвалидной коляске»',
+                good: 'Человек, использующий инвалидную коляску',
+                why: 'Коляска не «приковывает», а, наоборот, даёт свободу передвижения и самостоятельность.'
+            },
+            {
+                bad: '«Глухонемой»',
+                good: 'Глухой или слабослышащий человек',
+                why: 'Большинство глухих людей имеют исправный голосовой аппарат и общаются на жестовом языке — полноценном лингвистическом языке.'
+            },
+            {
+                bad: '«Страдает аутизмом / ДЦП»',
+                good: 'Человек с аутизмом / человек с ДЦП',
+                why: 'Слово «страдает» навязывает жалость и драматизацию. Нейтральная констатация факта звучит уважительнее.'
+            },
+            {
+                bad: '«Нормальные / здоровые люди» (в противопоставлении)',
+                good: 'Люди без инвалидности',
+                why: 'Противопоставление «инвалид — нормальный» автоматически записывает людей с инвалидностью в «ненормальные».'
+            }
+        ];
+
+        // --- ЛОГИКА ВКЛАДОК ---
+        function switchTab(tabId) {
+            const tabs = ['models', 'regions', 'quiz', 'ethics'];
+            tabs.forEach(id => {
+                const btn = document.getElementById(`tab-${id}`);
+                const panel = document.getElementById(`panel-${id}`);
+                if (id === tabId) {
+                    btn.classList.remove('bg-sand-100', 'text-slate-700', 'hover:bg-sand-200');
+                    btn.classList.add('bg-slate-850', 'text-white', 'shadow-sm');
+                    btn.setAttribute('aria-selected', 'true');
+                    panel.classList.remove('hidden');
+                } else {
+                    btn.classList.add('bg-sand-100', 'text-slate-700', 'hover:bg-sand-200');
+                    btn.classList.remove('bg-slate-850', 'text-white', 'shadow-sm');
+                    btn.setAttribute('aria-selected', 'false');
+                    panel.classList.add('hidden');
+                }
+            });
+        }
+
+        // --- РЕНДЕР ВКЛАДКИ 1: МОДЕЛИ ---
+        function renderModels() {
+            const container = document.getElementById('models-container');
+            container.innerHTML = modelsData.map((item, idx) => `
+                <article class="bg-white border border-sand-200 rounded-2xl overflow-hidden shadow-sm transition-all">
+                    <button onclick="toggleModel(${idx})" aria-expanded="false" id="model-btn-${idx}"
+                        class="w-full text-left p-4 sm:p-5 flex items-start justify-between gap-3 hover:bg-sand-50/70 transition-colors">
+                        <div>
+                            <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-terracotta-600 bg-terracotta-100 px-2.5 py-0.5 rounded-md mb-1.5">
+                                ${item.badge}
+                            </span>
+                            <h3 class="text-base sm:text-lg font-bold text-slate-900">${item.title}</h3>
+                            <p class="text-sm text-slate-600 mt-1">${item.summary}</p>
+                        </div>
+                        <span id="model-icon-${idx}" class="mt-1 p-1.5 rounded-full bg-sand-100 text-slate-600 transition-transform duration-200 shrink-0">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div id="model-body-${idx}" class="hidden px-4 sm:px-5 pb-5 pt-2 border-t border-sand-100 bg-sand-50/50 space-y-3 text-sm">
+                        <div>
+                            <span class="font-bold text-slate-800 block text-xs uppercase tracking-wide mb-0.5">Отношение к человеку:</span>
+                            <p class="text-slate-700 leading-relaxed">${item.attitude}</p>
+                        </div>
+                        <div>
+                            <span class="font-bold text-slate-800 block text-xs uppercase tracking-wide mb-0.5">Культурный и исторический контекст:</span>
+                            <p class="text-slate-700 leading-relaxed">${item.context}</p>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function toggleModel(idx) {
+            const body = document.getElementById(`model-body-${idx}`);
+            const btn = document.getElementById(`model-btn-${idx}`);
+            const icon = document.getElementById(`model-icon-${idx}`);
+            const isHidden = body.classList.contains('hidden');
+
+            if (isHidden) {
+                body.classList.remove('hidden');
+                btn.setAttribute('aria-expanded', 'true');
+                icon.classList.add('rotate-180', 'bg-slate-850', 'text-white');
+            } else {
+                body.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'false');
+                icon.classList.remove('rotate-180', 'bg-slate-850', 'text-white');
+            }
+        }
+
+        // --- РЕНДЕР ВКЛАДКИ 2: РЕГИОНЫ ---
+        function selectRegion(regionKey) {
+            const keys = ['scandinavia', 'japan', 'globalsouth', 'west'];
+            keys.forEach(k => {
+                const btn = document.getElementById(`reg-btn-${k}`);
+                const label = btn.querySelector('span:first-child');
+                if (k === regionKey) {
+                    btn.className = 'region-btn p-3 rounded-2xl border-2 border-teal-600 bg-teal-100/60 text-slate-900 text-left transition-all shadow-sm';
+                    label.className = 'block text-xs font-bold uppercase tracking-wider text-teal-700';
+                } else {
+                    btn.className = 'region-btn p-3 rounded-2xl border-2 border-sand-200 bg-white text-slate-700 hover:border-sand-300 text-left transition-all';
+                    label.className = 'block text-xs font-bold uppercase tracking-wider text-slate-500';
+                }
+            });
+
+            const data = regionsData[regionKey];
+            const card = document.getElementById('region-detail-card');
+            card.innerHTML = `
+                <div class="border-b border-sand-200 pb-3">
+                    <span class="text-xs font-bold uppercase tracking-wider text-teal-700">${data.tag}</span>
+                    <h3 class="text-xl font-extrabold text-slate-900 mt-0.5">${data.title}</h3>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                    <div class="bg-sand-50 p-3.5 rounded-2xl border border-sand-200/70">
+                        <h4 class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">Как объясняют причины</h4>
+                        <p class="text-sm text-slate-800 leading-relaxed">${data.causes}</p>
+                    </div>
+                    <div class="bg-sand-50 p-3.5 rounded-2xl border border-sand-200/70">
+                        <h4 class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">Роль семьи и общества</h4>
+                        <p class="text-sm text-slate-800 leading-relaxed">${data.family}</p>
+                    </div>
+                    <div class="bg-sand-50 p-3.5 rounded-2xl border border-sand-200/70">
+                        <h4 class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">Городская среда и доступность</h4>
+                        <p class="text-sm text-slate-800 leading-relaxed">${data.environment}</p>
+                    </div>
+                    <div class="bg-sand-50 p-3.5 rounded-2xl border border-sand-200/70">
+                        <h4 class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">Язык и терминология</h4>
+                        <p class="text-sm text-slate-800 leading-relaxed">${data.language}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- РЕНДЕР ВКЛАДКИ 3: МИНИ-ТЕСТ ---
+        let quizAnswers = {};
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = quizData.map((q, qIdx) => `
+                <div class="bg-white border border-sand-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3" id="quiz-card-${qIdx}">
+                    <p class="text-sm sm:text-base font-semibold text-slate-900 leading-snug">${q.scenario}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                        ${q.options.map((opt, oIdx) => `
+                            <button onclick="answerQuiz(${qIdx}, ${oIdx})" id="q-${qIdx}-opt-${oIdx}"
+                                class="quiz-opt-btn-${qIdx} px-4 py-2.5 rounded-xl border border-sand-300 bg-sand-50 hover:bg-sand-100 text-sm font-semibold text-slate-800 text-left sm:text-center transition-all">
+                                ${opt.text}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="quiz-feedback-${qIdx}" class="hidden text-xs sm:text-sm p-3 rounded-xl leading-relaxed"></div>
+                </div>
+            `).join('');
+        }
+
+        function answerQuiz(qIdx, oIdx) {
+            if (quizAnswers[qIdx] !== undefined) return; // Уже отвечено
+            const question = quizData[qIdx];
+            const chosen = question.options[oIdx];
+            quizAnswers[qIdx] = chosen.correct;
+
+            const buttons = document.querySelectorAll(`.quiz-opt-btn-${qIdx}`);
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+                btn.classList.remove('hover:bg-sand-100');
+                if (idx === oIdx) {
+                    if (chosen.correct) {
+                        btn.classList.remove('bg-sand-50', 'border-sand-300');
+                        btn.classList.add('bg-teal-600', 'text-white', 'border-teal-600');
+                    } else {
+                        btn.classList.remove('bg-sand-50', 'border-sand-300');
+                        btn.classList.add('bg-terracotta-500', 'text-white', 'border-terracotta-500');
+                    }
+                } else if (question.options[idx].correct) {
+                    btn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    btn.classList.add('opacity-50');
+                }
+            });
+
+            const fb = document.getElementById(`quiz-feedback-${qIdx}`);
+            fb.classList.remove('hidden');
+            if (chosen.correct) {
+                fb.classList.add('bg-teal-100/80', 'text-teal-900', 'border', 'border-teal-600/20');
+                fb.textContent = question.explanation;
+            } else {
+                fb.classList.add('bg-terracotta-100', 'text-slate-900', 'border', 'border-terracotta-500/20');
+                fb.textContent = `Не совсем так. ${question.explanation}`;
+            }
+
+            if (Object.keys(quizAnswers).length === quizData.length) {
+                const score = Object.values(quizAnswers).filter(Boolean).length;
+                const summary = document.getElementById('quiz-summary');
+                const scoreText = document.getElementById('quiz-score-text');
+                scoreText.textContent = `Ваш результат: ${score} из ${quizData.length}. Умение замечать барьеры среды вместо «проблем человека» — главный навык инклюзивного мышления.`;
+                summary.classList.remove('hidden');
+            }
+        }
+
+        function resetQuiz() {
+            quizAnswers = {};
+            document.getElementById('quiz-summary').classList.add('hidden');
+            renderQuiz();
+        }
+
+        // --- РЕНДЕР ВКЛАДКИ 4: ШПАРГАЛКА ЭТИКИ ---
+        function renderEthics() {
+            const container = document.getElementById('ethics-container');
+            container.innerHTML = ethicsData.map((item, idx) => `
+                <div class="bg-white border border-sand-200 rounded-2xl overflow-hidden shadow-sm">
+                    <button onclick="toggleEthics(${idx})" aria-expanded="false" id="ethics-btn-${idx}"
+                        class="w-full p-4 text-left flex items-center justify-between gap-3 hover:bg-sand-50 transition-colors">
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-terracotta-600 line-through decoration-terracotta-500/70">${item.bad}</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-teal-700 font-bold text-sm sm:text-base">
+                                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>${item.good}</span>
+                            </div>
+                        </div>
+                        <span id="ethics-badge-${idx}" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-sand-100 text-slate-600 shrink-0">
+                            Почему?
+                        </span>
+                    </button>
+                    <div id="ethics-body-${idx}" class="hidden px-4 pb-4 pt-2 border-t border-sand-100 bg-sand-50/70 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        ${item.why}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleEthics(idx) {
+            const body = document.getElementById(`ethics-body-${idx}`);
+            const btn = document.getElementById(`ethics-btn-${idx}`);
+            const badge = document.getElementById(`ethics-badge-${idx}`);
+            const isHidden = body.classList.contains('hidden');
+
+            if (isHidden) {
+                body.classList.remove('hidden');
+                btn.setAttribute('aria-expanded', 'true');
+                badge.textContent = 'Скрыть';
+                badge.classList.replace('bg-sand-100', 'bg-slate-850');
+                badge.classList.replace('text-slate-600', 'text-white');
+            } else {
+                body.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'false');
+                badge.textContent = 'Почему?';
+                badge.classList.replace('bg-slate-850', 'bg-sand-100');
+                badge.classList.replace('text-white', 'text-slate-600');
+            }
+        }
+
+        // --- КОПИРОВАНИЕ ССЫЛКИ (СОВМЕСТИМО С IFRAME) ---
+        function copyPageLink() {
+            const url = window.location.href;
+            const tempInput = document.createElement('input');
+            tempInput.value = url;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showToast('Ссылка скопирована! Можно отправить одногруппникам');
+            } catch (err) {
+                showToast('Не удалось скопировать ссылку автоматически');
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-message');
+            msgEl.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            renderModels();
+            selectRegion('scandinavia');
+            renderQuiz();
+            renderEthics();
+        });
+    </script>
+</body>
+</html>
